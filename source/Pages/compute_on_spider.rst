@@ -224,7 +224,7 @@ case you are in doubt then please contact :ref:`our helpdesk <helpdesk>`.
 
 
 Spider-specific constraints
-===========================
+============================
 
 In addition to the regular ``sbatch`` constraints, we also have introduced a
 number of Spider-specific constraints that are tailored to the hardware of our
@@ -263,7 +263,73 @@ combination that is not available you will receive the following error message:
    'sbatch: error: Batch job submission failed: Requested node configuration is not available'
 
 
+========================
+Worker node information
+========================
 
+Slurm can be used to query information about spider, below are some example commands, but if something you are interested in is not here then please refer to the `Slurm documentation page`_.
+
+
+Overview of all nodes
+======================
+To get a high level overview of the nodes:
+
+.. code-block:: bash
+
+   sinfo --Node --long
+
+
+This will show the following information 
+
+==================    =============
+Header                Explanation 
+==================    =============
+Nodelist              the node name 
+Nodes                 the number of these exact nodes 
+Partition             which partitions are running on this worker node 
+State                 Whether this node is being used 
+CPUS                  # cpu's / node 
+S:C:T                 ratio of sockets:cores:threads, 38:1:1 means this worker node has 38 sockets, each with 1 cpu, each cpu has one thread 
+Memory                memory / node in MB 
+Avail_fe              Available features, e.g. pool name 
+==================    =============
+
+Pool information 
+==================
+
+From the output of above you can see that worker nodes are named and grouped into pools based on their architecture for example:
+
+
+=============    =============   =============    =============    =============
+pool             node naming     cores            memory / core    special features  
+=============    =============   =============    =============    =============
+skylake          db              38 cores         8GB              n/a
+broadwel         fa              22 cores         8GB              n/a
+cascadel         gp              22 cores         8GB              gpu nodes  
+napels           ha              60 cores         16GB             fat nodes  
+=============    =============   =============    =============    =============
+
+
+Detailed node information 
+==========================
+
+To dig down deeper into information about a specific node 
+
+.. code-block:: bash
+
+   scontrol show node [NODE NAME]
+
+
+
+
+Parition information
+=====================
+
+.. code-block:: bash 
+
+   sinfo -a
+
+Show a high-level overview and some configuration details about Spider partitions
 
 
 .. srun        runs a job from the command line or from within a job script
