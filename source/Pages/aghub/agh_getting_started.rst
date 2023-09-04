@@ -24,7 +24,7 @@ Accept invitation e-mail from SRAM
 Set-up AGH User Account
 ------------------------
 
-1. Go to [portal](https://portal.surfsara.nl/home/) and change password from e-mail / accept SURF Usage agreement
+1. Go to [portal](https://portal.cua.surf.nl) and change password from e-mail / accept SURF Usage agreement
 2. Set up [2fa token](https://2fa.surfsara.nl/)
 
 
